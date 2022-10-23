@@ -29,64 +29,25 @@ int i;
 
 void main()
 {
-        /* Set up the housekeeping SPI to be connected internally so	*/
-	/* that external pin changes don't affect it.			*/
 
-	// reg_spimaster_config = 0xa002;	// Enable, prescaler = 2,
-        // reg_spi_enable = 1;
-                                        // connect to housekeeping SPI
-
-	// Connect the housekeeping SPI to the SPI master
-	// so that the CSB line is not left floating.  This allows
-	// all of the GPIO pins to be used for user functions.
-
-
-	// All GPIO pins are configured to be output
-	// Used to flad the start/end of a test 
-
+        // Clock and Reset signals come from outside the chip
         reg_mprj_io_10 = GPIO_MODE_MGMT_STD_INPUT_NOPULL;
         reg_mprj_io_11 = GPIO_MODE_MGMT_STD_INPUT_NOPULL;
+
+        // GPIO's 28-31 are used as outputs to send signals to outside
         reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
         reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
         reg_mprj_io_29 = GPIO_MODE_MGMT_STD_OUTPUT;
         reg_mprj_io_28 = GPIO_MODE_MGMT_STD_OUTPUT;
+
+        // GPIO's 24-27 are used as inputs to receive signals from outside
         reg_mprj_io_27 = GPIO_MODE_MGMT_STD_INPUT_NOPULL;
         reg_mprj_io_26 = GPIO_MODE_MGMT_STD_INPUT_NOPULL;
         reg_mprj_io_25 = GPIO_MODE_MGMT_STD_INPUT_NOPULL;
         reg_mprj_io_24 = GPIO_MODE_MGMT_STD_INPUT_NOPULL;
-        // reg_mprj_io_29 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // reg_mprj_io_28 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_27 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_26 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_25 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_24 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_23 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_22 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_21 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_20 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_19 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_18 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_17 = GPIO_MODE_MGMT_STD_OUTPUT;
-        // // reg_mprj_io_16 = GPIO_MODE_MGMT_STD_OUTPUT;
-
-        // // reg_mprj_io_15 = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_14 = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_13 = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_12 = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_11 = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_10 = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_9  = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_8  = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_7  = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_5  = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_4  = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_3  = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_2  = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_1  = GPIO_MODE_USER_STD_OUTPUT;
-        // // reg_mprj_io_0  = GPIO_MODE_USER_STD_OUTPUT;
         
 
-        /* Apply configuration */
+        /* Apply GPIO configuration */
         reg_mprj_xfer = 1;
         while (reg_mprj_xfer == 1);
 
